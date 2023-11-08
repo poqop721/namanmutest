@@ -60,8 +60,10 @@
 
 <!-- 자바스크립트 -->
 <script>
+    var isLoad = false
     function changeImage() {
-        document.getElementById("button-image").src = "button-pressed.png";
+        if(isLoad)
+            document.getElementById("button-image").src = "button-pressed.png";
     }
     function changeImageBack() {
         document.getElementById("button-image").src = "button-unpressed.png";
@@ -85,6 +87,7 @@
             }
         }, 1000);
         document.querySelector("div").classList.add("blur");
+        isLoad = true;
     }
 
     // 로딩 시 카운트다운 시작
