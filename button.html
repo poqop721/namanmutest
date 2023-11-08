@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>클릭클릭!</title>
 </head>
-<body><br>
+<body>
+<div>
 <h1>버튼을 최대한 많이 클릭하세요!</h1>
 <button ontouchstart="changeImage()" ontouchend="changeImageBack()">
     <img id="button-image" src="button-unpressed.png" alt="버튼 이미지">
 </button>
+</div>
 
 <!-- CSS 스타일 -->
 <style>
@@ -20,9 +22,11 @@
         justify-content: center;
         background-color: rgb(63, 89, 183);
         color: white;
+        overflow-y: hidden;
+        overflow-x: hidden;
     }
     h1{
-        width: 80vw;
+        font-size: 7vw;
     }
     button {
         border: none;
@@ -32,8 +36,23 @@
     }
     #button-image{
         width: 80vw;
+        z-index: 1;
     }
-    
+    #countdown {
+        font-size: 10vw;
+        text-align: center;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .blur {
+        filter: blur(5px);
+    }
 </style>
 
 <!-- 자바스크립트 -->
@@ -43,6 +62,29 @@
     }
     function changeImageBack() {
         document.getElementById("button-image").src = "button-unpressed.png";
+    }
+
+    // 카운트다운 함수
+    function countdown() {
+        var count = 3;
+        var countdownElement = document.createElement("h2");
+        countdownElement.id = "countdown";
+        document.body.appendChild(countdownElement);
+        var countdownInterval = setInterval(function() {
+            countdownElement.innerHTML = count;
+            count--;
+            if (count < 0) {
+                clearInterval(countdownInterval);
+                document.body.removeChild(countdownElement);
+                document.querySelector("div").classList.remove("blur");
+            }
+        }, 1000);
+        document.querySelector("div").classList.add("blur");
+    }
+
+    // 로딩 시 카운트다운 시작
+    window.onload = function() {
+        countdown();
     }
 </script>
 
