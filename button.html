@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><br>
+<h1>버튼을 최대한 많이 클릭하세요!</h1>
+<button onmousedown="changeImage()" onmouseup="changeImageBack()">
+    <img id="button-image" src="button-unpressed.png" alt="버튼 이미지">
+</button>
+
+<!-- CSS 스타일 -->
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(63, 89, 183);
+        color: white;
+    }
+    button {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        margin-top: 50px;
+    }
+    button:active img {
+        transform: translateY(2px); 
+    }
+</style>
+
+<!-- 자바스크립트 -->
+<script>
+    function changeImage() {
+        document.getElementById("button-image").src = "button-pressed.png";
+    }
+    function changeImageBack() {
+        document.getElementById("button-image").src = "button-unpressed.png";
+    }
+</script>
+
+</body>
+</html>
