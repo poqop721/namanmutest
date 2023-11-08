@@ -71,6 +71,8 @@
     function countdown() {
         var count = 3;
         var countdownElement = document.createElement("h2");
+        countdownElement.style.fontSize = "20vw";
+        countdownElement.style.color = "white";
         countdownElement.id = "countdown";
         document.body.appendChild(countdownElement);
         var countdownInterval = setInterval(function() {
